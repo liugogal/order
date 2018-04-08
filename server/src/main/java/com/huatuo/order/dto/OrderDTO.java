@@ -3,7 +3,6 @@ package com.huatuo.order.dto;
 import com.huatuo.order.dataobject.OrderDetail;
 import lombok.Data;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.List;
 

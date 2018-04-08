@@ -1,17 +1,16 @@
-package com.huatuo.order.repository;
+package java.com.huatuo.order.repository;
 
 import com.huatuo.order.OrderApplicationTests;
 import com.huatuo.order.dataobject.OrderMaster;
 import com.huatuo.order.enums.OrderStatusEnum;
 import com.huatuo.order.enums.PayStatusEnum;
+import com.huatuo.order.repository.OrderMasterRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-
-import static org.junit.Assert.*;
 
 @Component
 public class OrderMasterRepositoryTest extends OrderApplicationTests {

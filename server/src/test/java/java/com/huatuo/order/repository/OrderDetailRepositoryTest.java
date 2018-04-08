@@ -1,7 +1,8 @@
-package com.huatuo.order.repository;
+package java.com.huatuo.order.repository;
 
 import com.huatuo.order.OrderApplicationTests;
 import com.huatuo.order.dataobject.OrderDetail;
+import com.huatuo.order.repository.OrderDetailRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
