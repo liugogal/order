@@ -1,4 +1,4 @@
-package java.com.huatuo.order.repository;
+package com.huatuo.order.repository;
 
 import com.huatuo.order.OrderApplicationTests;
 import com.huatuo.order.dataobject.OrderMaster;

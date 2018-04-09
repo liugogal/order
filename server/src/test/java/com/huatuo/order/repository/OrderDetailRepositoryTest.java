@@ -1,4 +1,4 @@
-package java.com.huatuo.order.repository;
+package com.huatuo.order.repository;
 
 import com.huatuo.order.OrderApplicationTests;
 import com.huatuo.order.dataobject.OrderDetail;
@@ -20,7 +20,7 @@ public class OrderDetailRepositoryTest extends OrderApplicationTests{
     public void testSave() {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setDetailId("12367");
-        orderDetail.setOrderId("123456");
+        orderDetail.setOrderId("12345601");
         orderDetail.setProductIcon("http://xxx.com");
         orderDetail.setProductId("157875196366160022");
         orderDetail.setProductName("皮蛋粥");

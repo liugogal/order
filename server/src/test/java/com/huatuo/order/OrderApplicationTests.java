@@ -1,4 +1,4 @@
-package java.com.huatuo.order;
+package com.huatuo.order;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
