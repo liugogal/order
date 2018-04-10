@@ -7,6 +7,14 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: test
+#stream可以配置到git上去
+    stream:
+      bindings:
+        input:
+          destination: mqTestDefault
+        output:
+          destination: mqTestDefault
+          contentType: text/plain
 eureka:
   client:
     service-url:

@@ -7,10 +7,10 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface StreamClient {
 
-    @Input("myMessage")
-    SubscribableChannel input();
+//    @Input("test")
+//    SubscribableChannel input();
 
 
-    @Output("myMessage")
+    @Output("test")
     MessageChannel output();
 }

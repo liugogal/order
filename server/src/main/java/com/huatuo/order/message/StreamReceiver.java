@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@EnableBinding(StreamClient.class)
+@EnableBinding(Sink.class)
 public class StreamReceiver {
 
-    @StreamListener("myMessage")
+    @StreamListener(Sink.INPUT)
     public void listener(Object message) {
         log.info("StreamReceiver: {}", message);
     }

@@ -1,20 +1,22 @@
 package com.huatuo.order.controller;
 
-import com.huatuo.order.message.StreamClient;
+import com.huatuo.order.message.Source;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@EnableBinding(Source.class)
 public class StreamSendMessageController {
 
     @Autowired
-    private StreamClient streamClient;
+    private Source source;
 
     @GetMapping(value = "/sendMessage")
     public String sendMessage() {
-        streamClient.output().send(MessageBuilder.withPayload("hahahaha").build());
+        source.output().send(MessageBuilder.withPayload("hahahaha").build());
         return "ok";
     }
 }
