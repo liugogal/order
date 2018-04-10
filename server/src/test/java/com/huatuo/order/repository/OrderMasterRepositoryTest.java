@@ -22,7 +22,7 @@ public class OrderMasterRepositoryTest extends OrderApplicationTests {
     public void testSave() throws Exception {
 
         OrderMaster orderMaster = new OrderMaster();
-        orderMaster.setOrderId("123456");
+        orderMaster.setOrderId("12345678");
         orderMaster.setBuyerName("师兄");
         orderMaster.setBuyerPhone("13648082878");
         orderMaster.setBuyerAddress("成都金牛区");
