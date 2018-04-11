@@ -1,5 +1,6 @@
 package com.huatuo.order.controller;
 
+import com.huatuo.order.dto.OrderDTO;
 import com.huatuo.order.message.Source;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -16,7 +17,9 @@ public class StreamSendMessageController {
 
     @GetMapping(value = "/sendMessage")
     public String sendMessage() {
-        source.output().send(MessageBuilder.withPayload("hahahaha").build());
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderId("12321312");
+        source.output().send(MessageBuilder.withPayload(orderDTO).build());
         return "ok";
     }
 }
