@@ -5,6 +5,8 @@ import com.huatuo.order.dataobject.OrderMaster;
 import com.huatuo.order.dto.OrderDTO;
 import com.huatuo.order.enums.OrderStatusEnum;
 import com.huatuo.order.enums.PayStatusEnum;
+import com.huatuo.order.enums.ResultEnum;
+import com.huatuo.order.exception.OrderException;
 import com.huatuo.order.repository.OrderDetailRepository;
 import com.huatuo.order.repository.OrderMasterRepository;
 import com.huatuo.order.service.OrderService;
@@ -15,10 +17,13 @@ import com.huatuo.product.common.ProductInfoOutput;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -84,5 +89,40 @@ public class OrderServiceImpl implements OrderService {
         orderMasterRepository.save(orderMaster);
         return orderDTO;
 
+    }
+
+    @Override
+    @Transactional
+    public OrderDTO finish(String orderId) {
+        //1、查询订单状态
+        Optional<OrderMaster> optionalOrderMaster = orderMasterRepository.findById(orderId);
+        if (!optionalOrderMaster.isPresent()) {
+            throw new OrderException(ResultEnum.ORDER_NOT_EXIST);
+        }
+
+
+        //2、判断订单状态
+        OrderMaster orderMaster = optionalOrderMaster.get();
+        if (OrderStatusEnum.NEW.getCode() != orderMaster.getOrderStatus()) {
+            throw new OrderException(ResultEnum.ORDER_STATUS_ERROR);
+        }
+
+
+        //3、修改订单为完结状态
+        orderMaster.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+        orderMasterRepository.save(orderMaster);
+
+        //查询订单详情
+        List<OrderDetail> orderDetails = orderDetailRepository.findByOrderId(orderId);
+        if (CollectionUtils.isEmpty(orderDetails)) {
+            throw new OrderException(ResultEnum.ORDER_DETAIL_NOT_EXIST);
+        }
+
+        //创建dto对象赋值
+        OrderDTO orderDTO = new OrderDTO();
+        BeanUtils.copyProperties(orderMaster, orderDTO);
+        orderDTO.setOrderDetailList(orderDetails);
+
+        return orderDTO;
     }
 }
